@@ -68,18 +68,21 @@ public:
         }
         else
         {
+            Node *t=head;
+            int len=0;
+            while(t)
+            {
+                len++;
+                t=t->next;
+            }
+            if(index>len) return;
             index--;
             Node *temp=head;
             while(index--)
             {
-                if(temp==NULL) break;
+             
                  temp=temp->next;
             };
-            if(temp==NULL)
-            {
-                temp=newnode;
-                return;
-            }
             newnode->next=temp->next;
             temp->next=newnode;
         }
