@@ -1,7 +1,5 @@
-class MyLinkedList {
-  public:
-    class Node
-    {
+class Node
+ {
       public:
         int val;
         Node*next;
@@ -10,26 +8,33 @@ class MyLinkedList {
              this->val=x;
              this->next=NULL;
         }
-    };
-    Node*head=NULL;
-public:
-    MyLinkedList() {
-         
+};
+class MyLinkedList {
+  public:
+
+    Node*head;
+    MyLinkedList() 
+    { 
+        head=NULL;
     }
     
     int get(int index) {
-        if(index==0)
+         Node *t=head;
+        int len=0;
+        while(t)
         {
-            if(head==NULL) return -1;
-            return head->val;}
+            len++;
+            t=t->next;
+        }
+        if(index>=len) return -1;
+        if(index==0)
+        { return head->val;}
         Node *temp= head;
         while(index--)
         {  
              
-             if(temp==NULL) break;
              temp=temp->next;
         }
-        if(temp==NULL) return -1;
         return temp->val;
     }
     
