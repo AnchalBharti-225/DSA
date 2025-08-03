@@ -26,7 +26,7 @@ public:
         while(index--)
         {  
              
-             if(temp==NULL) return -1;
+             if(temp==NULL) break;
              temp=temp->next;
         }
         if(temp==NULL) return -1;
