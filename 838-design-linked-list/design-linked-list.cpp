@@ -96,15 +96,21 @@ public:
         }
         else
         {
+            Node *t=head;
+            int len=0;
+            while(t)
+            {
+                len++;
+                t=t->next;
+            }
+            if(index>=len) return;
              Node *prev=NULL;
              Node *curr=head;
              while(index--)
              {
-                if(curr==NULL) return ;
                  prev=curr;
                  curr=curr->next;
              }
-             if(prev->next==NULL) return ;
              prev->next=curr->next;
              curr->next=NULL;
         }
