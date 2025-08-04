@@ -13,7 +13,6 @@ public:
     ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
         ListNode *temp1=list1;
         ListNode *temp2=NULL;
-        int len=0;
         for(int i=1;i<a;i++)
         {
              temp1=temp1->next;
