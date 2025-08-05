@@ -8,30 +8,53 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
-public:
-    ListNode* removeElements(ListNode* head, int val) {
-       ListNode*prev=NULL;
-       ListNode * curr=head;
-       while(curr)
-       {
-           if(curr==head && curr->val==val)
-           { head=head->next;}
-            else if (curr->val==val)
-            {
-                    prev->next=curr->next;
-                    if(curr->next==NULL) break;
-                    curr=curr->next;
-                    while(curr->val==val)
-                    {
-                    prev->next=curr->next;
-                    if(curr->next==NULL) break;
-                    curr=curr->next;
-                    }
-            }
-            prev=curr;
-            curr=curr->next;
-       }
-       return head;
-    }
+// Approach: I
+// class Solution {
+// public:
+//     ListNode* removeElements(ListNode* head, int val) {
+//        ListNode*prev=NULL;
+//        ListNode * curr=head;
+//        while(curr)
+//        {
+//            if(curr==head && curr->val==val)
+//            { head=head->next;}
+//             else if (curr->val==val)
+//             {
+//                     prev->next=curr->next;
+//                     if(curr->next==NULL) break;
+//                     curr=curr->next;
+//                     while(curr->val==val)
+//                     {
+//                     prev->next=curr->next;
+//                     if(curr->next==NULL) break;
+//                     curr=curr->next;
+//                     }
+//             }
+//             prev=curr;
+//             curr=curr->next;
+//        }
+//        return head;
+//     }
+// };
+// Approach:II
+class Solution
+{
+    public:
+     ListNode* removeElements(ListNode*head,int val)
+     {
+         ListNode * curr=head;
+         while(curr and curr->val==val)
+         {
+             curr=curr->next;
+         }
+         head=curr;
+         while(curr)
+         {
+               if(curr->next and curr->next->val==val)
+               { curr->next=curr->next->next;}
+                    else curr=curr->next;
+
+         }
+         return head;
+     }
 };
