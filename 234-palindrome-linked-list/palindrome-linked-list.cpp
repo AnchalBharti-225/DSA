@@ -8,10 +8,58 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
-public:
-    ListNode * reverseList(ListNode *head)
-    {
+// Approach I: T.C=O(n) , S.C = O(n)
+// class Solution {
+// public:
+//     ListNode * reverseList(ListNode *head)
+//     {
+//          ListNode * prev=NULL;
+//          ListNode * curr=head;
+//          ListNode * Next=head;
+//          while(curr)
+//          {
+//              Next=curr->next;
+//              curr->next=prev;
+//              prev=curr;
+//              curr=Next;
+
+//          }
+//          return prev;
+//     }
+//     bool isPalindrome(ListNode* head) {
+//            ListNode * c=new ListNode(10);
+//            // deepcopy of head
+//            ListNode * temp=head;
+//            ListNode * tempC=c;
+//            while(temp)
+//            {
+//                 ListNode * node =new ListNode(temp->val);
+//                 tempC->next=node;
+//                 temp=temp->next;
+//                 tempC=tempC->next;
+//            }
+//            c=c->next;
+//            c=reverseList(c);
+//            ListNode * a=head;
+//            ListNode * b=c;
+//            while(a)
+//            {
+//               if(a->val != b->val)
+//               {
+//                   return false;
+//               }
+//                a=a->next;
+//                b=b->next;
+//            }
+//           return true;
+//     }
+// };
+// Approach II: T.C=O(n), S.C=O(1)
+class Solution
+{
+    public:
+      ListNode * reverseList(ListNode * head)
+      {
          ListNode * prev=NULL;
          ListNode * curr=head;
          ListNode * Next=head;
@@ -21,35 +69,30 @@ public:
              curr->next=prev;
              prev=curr;
              curr=Next;
-
          }
          return prev;
-    }
-    bool isPalindrome(ListNode* head) {
-           ListNode * c=new ListNode(10);
-           // deepcopy of head
-           ListNode * temp=head;
-           ListNode * tempC=c;
-           while(temp)
-           {
-                ListNode * node =new ListNode(temp->val);
-                tempC->next=node;
-                temp=temp->next;
-                tempC=tempC->next;
-           }
-           c=c->next;
-           c=reverseList(c);
-           ListNode * a=head;
-           ListNode * b=c;
-           while(a)
-           {
-              if(a->val != b->val)
-              {
-                  return false;
-              }
-               a=a->next;
-               b=b->next;
-           }
-          return true;
-    }
+      }
+      bool isPalindrome(ListNode* head)
+      {
+            ListNode * slow=head;
+            ListNode * fast=head;
+            while(fast->next!=NULL && fast->next->next!=NULL)
+            {
+                 slow=slow->next;
+                 fast=fast->next->next;
+            }
+            ListNode * newhead=reverseList(slow->next);
+            ListNode * a=head;
+            ListNode * b=newhead;
+            while(b)
+            {
+                 if(a->val!=b->val)
+                 {
+                      return false;
+                 }
+                 a=a->next;
+                 b=b->next;
+            }
+            return true;
+      }
 };
